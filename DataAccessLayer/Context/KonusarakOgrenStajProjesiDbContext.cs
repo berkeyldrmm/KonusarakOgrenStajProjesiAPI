@@ -5,16 +5,7 @@ namespace DataAccessLayer.Context;
 
 public partial class KonusarakOgrenStajProjesiDbContext : DbContext
 {
-    private readonly IConfiguration _configuration;
-    public KonusarakOgrenStajProjesiDbContext(IConfiguration configuration)
-    {
-        _configuration = configuration;
-    }
-
-    public KonusarakOgrenStajProjesiDbContext(DbContextOptions<KonusarakOgrenStajProjesiDbContext> options)
-        : base(options)
-    {
-    }
+    
 
     public virtual DbSet<Character> Characters { get; set; }
 
@@ -23,7 +14,7 @@ public partial class KonusarakOgrenStajProjesiDbContext : DbContext
     public virtual DbSet<Episode> Episodes { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer(_configuration["ConnectionStrings:SqlServer"]);
+        => optionsBuilder.UseSqlServer("Server=BERKE;Database=KonusarakOgrenStajProjesiDB;Trusted_Connection=True;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -41,11 +32,11 @@ public partial class KonusarakOgrenStajProjesiDbContext : DbContext
 
         modelBuilder.Entity<CharacterEpisode>(entity =>
         {
-            entity.HasNoKey();
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
             entity.HasOne(d => d.Character).WithMany()
                 .HasForeignKey(d => d.CharacterId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_CharacterEpisodes_Characters");
 
             entity.HasOne(d => d.Episode).WithMany()

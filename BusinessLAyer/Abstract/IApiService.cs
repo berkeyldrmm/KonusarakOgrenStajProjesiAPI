@@ -1,5 +1,4 @@
-﻿using DataAccessLayer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface IEpisodeService : IGenericService<Episode>
+    public interface IApiService
     {
-        public Task<bool> DeleteAll();
+        public Task<string> Get(string url);
     }
 }

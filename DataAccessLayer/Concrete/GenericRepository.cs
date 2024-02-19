@@ -11,7 +11,7 @@ namespace DataAccessLayer.Concrete
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly KonusarakOgrenStajProjesiDbContext _context;
+        protected readonly KonusarakOgrenStajProjesiDbContext _context;
 
         public GenericRepository(KonusarakOgrenStajProjesiDbContext context)
         {
@@ -33,5 +33,13 @@ namespace DataAccessLayer.Concrete
         {
             return _context.Set<T>().Find(id);
         }
+
+        public bool DeleteOne(int id)
+        {
+            var result = _context.Remove(id);
+            return result.State == EntityState.Deleted;
+        }
+
+        
     }
 }

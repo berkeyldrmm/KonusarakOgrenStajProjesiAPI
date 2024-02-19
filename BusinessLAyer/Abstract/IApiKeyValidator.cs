@@ -1,5 +1,4 @@
-﻿using DataAccessLayer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface IEpisodeService : IGenericService<Episode>
+    public interface IApiKeyValidator
     {
-        public Task<bool> DeleteAll();
+        bool IsValid(string apiKey);
     }
 }

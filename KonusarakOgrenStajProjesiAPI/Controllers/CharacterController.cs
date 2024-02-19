@@ -3,6 +3,8 @@ using DataAccessLayer;
 using KonusarakOgrenStajProjesiAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace KonusarakOgrenStajProjesiAPI.Controllers
 {
@@ -28,7 +30,7 @@ namespace KonusarakOgrenStajProjesiAPI.Controllers
             return NotFound();
         }
 
-        [HttpGet]
+        [HttpGet("{id:int}")]
         public IActionResult GetCharacter(int id)
         {
             Character charachter = _characterService.ReadOne(id);
@@ -39,13 +41,23 @@ namespace KonusarakOgrenStajProjesiAPI.Controllers
             return NotFound();
         }
 
-        [HttpPost]
-        public IActionResult PostCharacter(CharacterModel characterModel)
+        //[HttpPost]
+        //public IActionResult PostCharacter(CharacterModel characterModel)
+        //{
+        //    Character character = new Character()
+        //    {
+        //        Id = Guid.NewGuid().ToString() + DateTime.Now.ToString("hhmmss"),
+        //    }
+        //}
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteCharacters()
         {
-            Character character = new Character()
+            if(await _characterService.DeleteAll())
             {
-                Id = Guid.NewGuid().ToString() + DateTime.Now.ToString("hhmmss"),
+                return NoContent();
             }
+            throw new Exception("Karakterler silinemedi.");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DataAccessLayer;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface IEpisodeService : IGenericService<Episode>
+    public interface ICharacterEpisodeService : IGenericService<CharacterEpisode>
     {
-        public Task<bool> DeleteAll();
     }
 }

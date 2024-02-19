@@ -32,5 +32,9 @@ namespace BusinessLayer.Concrete
         {
             return _episodeRepository.ReadOne(id);
         }
+        public async Task<bool> DeleteAll()
+        {
+            return await _episodeRepository.DeleteAll();
+        }
     }
 }

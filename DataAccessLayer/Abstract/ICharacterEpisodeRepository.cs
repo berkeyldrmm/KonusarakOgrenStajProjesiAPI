@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Abstract
 {
-    public interface ICharacterRepository : IGenericRepository<Character>
+    public interface ICharacterEpisodeRepository : IGenericRepository<CharacterEpisode>
     {
-        public Task<bool> DeleteAll();
     }
 }

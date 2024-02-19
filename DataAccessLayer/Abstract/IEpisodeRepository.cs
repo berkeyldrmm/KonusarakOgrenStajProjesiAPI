@@ -8,5 +8,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface IEpisodeRepository : IGenericRepository<Episode>
     {
+        public Task<bool> DeleteAll();
     }
 }

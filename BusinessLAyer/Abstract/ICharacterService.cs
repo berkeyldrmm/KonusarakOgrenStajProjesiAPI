@@ -9,5 +9,6 @@ namespace BusinessLayer.Abstract
 {
     public interface ICharacterService : IGenericService<Character>
     {
+        public Task<bool> DeleteAll();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer;
 using DataAccessLayer.Abstract;
+using DataAccessLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,11 @@ namespace BusinessLayer.Concrete
         public Character ReadOne(int id)
         {
             return _characterRepository.ReadOne(id);
+        }
+
+        public async Task<bool> DeleteAll()
+        {
+            return await _characterRepository.DeleteAll();
         }
     }
 }

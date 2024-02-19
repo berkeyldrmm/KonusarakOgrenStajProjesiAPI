@@ -1,27 +1,53 @@
-﻿namespace KonusarakOgrenStajProjesiAPI.Models
+﻿using Newtonsoft.Json;
+
+namespace KonusarakOgrenStajProjesiAPI.Models
 {
-    public class CharacterModel
+    public partial class CharacterModel
     {
-        public string Name { get; set; } = null!;
+        [JsonProperty("id")]
+        public int Id { get; set; }
 
-        public string? Status { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
-        public string? Species { get; set; }
+        [JsonProperty("status")]
+        public string Status { get; set; }
 
-        public string? Type { get; set; }
+        [JsonProperty("species")]
+        public string Species { get; set; }
 
-        public string? Gender { get; set; }
+        [JsonProperty("type")]
+        public string Type { get; set; }
 
-        public string? Image { get; set; }
+        [JsonProperty("gender")]
+        public string Gender { get; set; }
 
-        public string? Url { get; set; }
+        [JsonProperty("origin")]
+        public Location Origin { get; set; }
 
-        public DateTime? Created { get; set; }
+        [JsonProperty("location")]
+        public Location Location { get; set; }
 
-        public string? OriginName { get; set; }
-        public string? OriginUrl { get; set; }
+        [JsonProperty("image")]
+        public string Image { get; set; }
 
-        public string? LocationName { get; set; }
-        public string? LocationUrl { get; set; }
+        [JsonProperty("episode")]
+        public string[] Episode { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+
+        [JsonProperty("created")]
+        public DateTime Created { get; set; }
     }
+
+    public partial class Location
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+
 }
